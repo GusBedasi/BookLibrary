@@ -50,7 +50,6 @@ namespace BookLibrary
         }
 
         // Code to find a specific entity
-
         public static T FindOne<T>(Expression<Func<T, bool>> filter, 
             params Expression<Func<T, object>>[] include) where T: class
         {
