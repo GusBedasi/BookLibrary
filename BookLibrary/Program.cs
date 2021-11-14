@@ -32,15 +32,14 @@ namespace BookLibrary
             // }
 
             //Descomente essa parte para printar o que foi buscado do banco de dados
-            var author = FindOne<Author>(x => x.Name == "J. R. R. Tolkien");
-            
+            var author = FindOne<Author>(x => x.Name == "J. R. R. Tolkien",
+                x => x.Books);
+
             if (author == null)
             {
                 Console.WriteLine("Author don't exist!");
                 return;
             }
-            
-            author.Books = FindAll<Book>(x => x.AuthId == author.Id);
             
             Console.WriteLine(author.ToString());
             
@@ -51,11 +50,20 @@ namespace BookLibrary
         }
 
         // Code to find a specific entity
-        public static T FindOne<T>(Expression<Func<T, bool>> filter) where T: class
+
+        public static T FindOne<T>(Expression<Func<T, bool>> filter, 
+            params Expression<Func<T, object>>[] include) where T: class
         {
             using (var db = new LibraryDbContext(_options))
             {
-                return db.Set<T>().FirstOrDefault(filter);
+                IQueryable<T> set = db.Set<T>();
+                
+                foreach (var item in include)
+                {
+                    set = set.Include(item);
+                }
+                
+                return set.FirstOrDefault(filter);
             }
         }
         
