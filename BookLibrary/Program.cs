@@ -23,7 +23,7 @@ namespace BookLibrary
             //     db.Database.EnsureCreated();
             // }
 
-            // Descomente essa parte para criar no banco os dados falsos
+            // Descomente essa parte para criar registros no banco os dados
             // var authors = CreateFakeData();
             // using (var db = new LibraryDbContext(_options))
             // {
