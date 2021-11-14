@@ -9,3 +9,4 @@ Coisas aprendidas:
 
 Retorno da execução do código, já com banco criado e populado:
 
+![image](https://user-images.githubusercontent.com/23214684/141702417-2d35676c-ef7b-4c77-bbfa-d0263adb2b5f.png)
